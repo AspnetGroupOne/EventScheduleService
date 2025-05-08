@@ -86,9 +86,3 @@ The AM/PM changes depending on if the first two digits is higher or lower than 1
 
 <img src="https://github.com/user-attachments/assets/028d3aff-bd27-4669-8a84-dd94fb8b15f9" height="200">
 
-### Flow:  (Subject to change)
-
-<img src="https://github.com/user-attachments/assets/495145c7-0bf3-49e1-b0ea-dac6890bb983" height="200">
-
-
-
