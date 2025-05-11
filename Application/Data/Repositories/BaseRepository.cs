@@ -46,6 +46,8 @@ public class BaseRepository<TEntity>(DataContext context) : IBaseRepository<TEnt
             if (predicate == null) { return new RepoResponse<TEntity>() { Success = false, StatusCode = 400, Message = "Predicate is null.", Content = null }; }
 
             var entity = await _dbSet.FirstOrDefaultAsync(predicate);
+            if (entity == null) { return new RepoResponse<TEntity>() { Success = false, StatusCode = 404, Message = "Entity not found.", Content = null }; }
+
             return new RepoResponse<TEntity>() { Success = true, StatusCode = 200, Content = entity };
         }
         catch (Exception ex) { return new RepoResponse<TEntity>() { StatusCode = 500, Success = false, Message = $"{ex.Message}", Content = null }; }
@@ -56,6 +58,7 @@ public class BaseRepository<TEntity>(DataContext context) : IBaseRepository<TEnt
         try
         {
             if (entity == null) { return new RepoResponse() { Success = false, StatusCode = 400, Message = "Entity is null." }; }
+
 
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();
