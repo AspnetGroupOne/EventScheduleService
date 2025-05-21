@@ -1,4 +1,5 @@
 ﻿using Application.Domain.Forms;
+using Application.External.Interfaces;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +7,19 @@ namespace Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SchedulesController(IScheduleService scheduleService) : ControllerBase
+public class SchedulesController(IScheduleService scheduleService, IEventIdValidationService eventIdValidationService) : ControllerBase
 {
     private readonly IScheduleService _scheduleService = scheduleService;
+    private readonly IEventIdValidationService _eventValidation = eventIdValidationService;
 
     [HttpPost]
     public async Task<IActionResult> Create(AddScheduleForm addForm)
     {
         if (!ModelState.IsValid) { return BadRequest(); }
+
+        // This validation is only needed when adding data if im not thinking wrong.
+        var eventValidationResult = await _eventValidation.EventExistance(addForm.EventId);
+        if (eventValidationResult.Success == false) { return BadRequest(eventValidationResult.Message); }
 
         var result = await _scheduleService.AddScheduleAsync(addForm);
         return result.Success ? Ok(result) : BadRequest(result);
