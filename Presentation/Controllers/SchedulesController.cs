@@ -2,9 +2,11 @@
 using Application.External.Interfaces;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Extensions.Attributes;
 
 namespace Presentation.Controllers;
 
+[UseApiKey]
 [Route("api/[controller]")]
 [ApiController]
 public class SchedulesController(IScheduleService scheduleService, IEventIdValidationService eventIdValidationService) : ControllerBase
