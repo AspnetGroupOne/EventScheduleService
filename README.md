@@ -1,8 +1,5 @@
 # EventScheduleService
 
-Made by https://github.com/SimonR-prog
-
-
 # Postman:
 
 ## Authentication:
@@ -83,6 +80,10 @@ Upon success you will recieve:
 }
 ```
 
+# Sequence diagram plantuml
+
+<img src="https://github.com/user-attachments/assets/0c7c4f3b-a1ae-424a-9476-1813af972536" width="400">
+
 # Usage in the frontend:
 
 ### Adding the schedule:
@@ -96,4 +97,8 @@ Event title is going to be the name of the event in the future when everything i
 The AM/PM changes depending on if the first two digits is higher or lower than 12.
 
 <img src="https://github.com/user-attachments/assets/028d3aff-bd27-4669-8a84-dd94fb8b15f9" height="200">
+
+### Created By:
+
+https://github.com/SimonR-prog
 
